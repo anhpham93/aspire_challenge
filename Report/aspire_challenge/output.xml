@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.8.12 on darwin)" generated="20211107 17:46:52.226" rpa="false">
+<suite id="s1" name="Selenium Aspire" source="/Users/anhpham/Learn/Aspire/aspire_challenge/selenium_aspire">
+<suite id="s1-s1" name="Tests" source="/Users/anhpham/Learn/Aspire/aspire_challenge/selenium_aspire/Tests">
+<kw name="Setup All" type="setup">
+<kw name="Set Selenium Timeout" library="SeleniumLibrary">
+<doc>Sets the timeout that is used by various keywords.</doc>
+<arguments>
+<arg>20 seconds</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:46:52.565" endtime="20211107 17:46:52.566"></status>
+</kw>
+<kw name="Setup Browser Drivers" library="Initialize">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>platform.system()</arg>
+<arg>platform</arg>
+</arguments>
+<assign>
+<var>${system}</var>
+</assign>
+<msg timestamp="20211107 17:46:52.573" level="INFO">${system} = Darwin</msg>
+<status status="PASS" starttime="20211107 17:46:52.566" endtime="20211107 17:46:52.573"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>\nI am running on ${system}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:46:52.574" endtime="20211107 17:46:52.574"></status>
+</kw>
+<kw name="Append To Environment Variable" library="OperatingSystem">
+<doc>Appends given ``values`` to environment variable ``name``.</doc>
+<arguments>
+<arg>PATH</arg>
+<arg>${bin_path}/${system}/</arg>
+</arguments>
+<msg timestamp="20211107 17:46:52.575" level="INFO">Environment variable 'PATH' set to value '/Users/anhpham/.local/share/virtualenvs/aspire_challenge-nj8eEbz3/bin:/usr/local/Cellar/pipenv/2021.5.29_1/libexec/tools:/Users/anhpham/Library/Android/sdk/build-tools/29.0.6:/Users/anhpham/Library/Android/sdk/emulator:/Users/anhpham/Library/Android/sdk/tools:/Users/anhpham/Library/Android/sdk/tools:/Users/anhpham/Library/Android/sdk/tools/bin:/Users/anhpham/Library/Android/sdk/platform-tools:/Users/anhpham/Library/Android/sdk/emulator:/Users/anhpham/Tools/apache-maven-3.6.3/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/bin/:/Applications/Chrome Apps.localized/Contents/MacOS:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Users/anhpham/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-18471ec0-0f89-40c4-9182-cc10801da543/installation-3.5.17/bin:/Users/anhpham/.nvm/versions/node/v6.17.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/anhpham/Learn/Aspire/aspire_challenge/Resources/bin/Darwin/'.</msg>
+<status status="PASS" starttime="20211107 17:46:52.574" endtime="20211107 17:46:52.575"></status>
+</kw>
+<kw name="Set Environment Variable" library="OperatingSystem">
+<doc>Sets an environment variable to a specified value.</doc>
+<arguments>
+<arg>webdriver.chrome.driver</arg>
+<arg>${bin_path}/${system}/chromedriver</arg>
+</arguments>
+<msg timestamp="20211107 17:46:52.576" level="INFO">Environment variable 'webdriver.chrome.driver' set to value '/Users/anhpham/Learn/Aspire/aspire_challenge/Resources/bin/Darwin/chromedriver'.</msg>
+<status status="PASS" starttime="20211107 17:46:52.575" endtime="20211107 17:46:52.576"></status>
+</kw>
+<kw name="Set Environment Variable" library="OperatingSystem">
+<doc>Sets an environment variable to a specified value.</doc>
+<arguments>
+<arg>webdriver.gecko.driver</arg>
+<arg>${bin_path}/${system}/geckodriver</arg>
+</arguments>
+<msg timestamp="20211107 17:46:52.576" level="INFO">Environment variable 'webdriver.gecko.driver' set to value '/Users/anhpham/Learn/Aspire/aspire_challenge/Resources/bin/Darwin/geckodriver'.</msg>
+<status status="PASS" starttime="20211107 17:46:52.576" endtime="20211107 17:46:52.576"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:46:52.566" endtime="20211107 17:46:52.577"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:46:52.565" endtime="20211107 17:46:52.577"></status>
+</kw>
+<suite id="s1-s1-s1" name="Aspire Challenge" source="/Users/anhpham/Learn/Aspire/aspire_challenge/selenium_aspire/Tests/Aspire_Challenge">
+<suite id="s1-s1-s1-s1" name="Create Manufacturing Orders" source="/Users/anhpham/Learn/Aspire/aspire_challenge/selenium_aspire/Tests/Aspire_Challenge/Create_Manufacturing_Orders.robot">
+<kw name="Open Browser to the Login Page" library="LoginPage" type="setup">
+<kw name="Open Browser to the Home Page" library="Common">
+<doc>Opens the browser and navigates to the home page</doc>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+</arguments>
+<assign>
+<var>${chrome_options}</var>
+</assign>
+<msg timestamp="20211107 17:46:53.025" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x10f6077f0&gt;</msg>
+<status status="PASS" starttime="20211107 17:46:53.024" endtime="20211107 17:46:53.025"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${headless}==${true}</arg>
+<arg>Call Method</arg>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:46:53.025" endtime="20211107 17:46:53.025"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--remote-debugging-port\=${remote_debug_port}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:46:53.025" endtime="20211107 17:46:53.026"></status>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${chrome_options}</arg>
+<arg>to_capabilities</arg>
+</arguments>
+<assign>
+<var>${options}</var>
+</assign>
+<msg timestamp="20211107 17:46:53.026" level="INFO">${options} = {'browserName': 'chrome', 'pageLoadStrategy': 'normal', 'goog:chromeOptions': {'extensions': [], 'args': ['--remote-debugging-port=9223']}}</msg>
+<status status="PASS" starttime="20211107 17:46:53.026" endtime="20211107 17:46:53.026"></status>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>url=${siteUrl}</arg>
+<arg>browser=${BROWSER}</arg>
+<arg>desired_capabilities=${options}</arg>
+</arguments>
+<msg timestamp="20211107 17:46:53.027" level="INFO">Opening browser 'chrome' to base url 'https://aspireapp.odoo.com'.</msg>
+<status status="PASS" starttime="20211107 17:46:53.026" endtime="20211107 17:47:02.193"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${headless}==${true}</arg>
+<arg>Set Window Size</arg>
+<arg>1366</arg>
+<arg>768</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:02.193" endtime="20211107 17:47:02.194"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${headless}==${false}</arg>
+<arg>Maximize Browser Window</arg>
+</arguments>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211107 17:47:02.195" endtime="20211107 17:47:02.330"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:02.194" endtime="20211107 17:47:02.330"></status>
+</kw>
+<kw name="Get Window Size" library="SeleniumLibrary">
+<doc>Returns current window width and height as integers.</doc>
+<assign>
+<var>${width}</var>
+<var>${height}</var>
+</assign>
+<msg timestamp="20211107 17:47:02.333" level="INFO">${width} = 1440</msg>
+<msg timestamp="20211107 17:47:02.333" level="INFO">${height} = 877</msg>
+<status status="PASS" starttime="20211107 17:47:02.330" endtime="20211107 17:47:02.333"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Display Resolution:${width}x${height}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:02.334" level="INFO">Display Resolution:1440x877</msg>
+<status status="PASS" starttime="20211107 17:47:02.333" endtime="20211107 17:47:02.334"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:46:53.024" endtime="20211107 17:47:02.334"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${siteUrl}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:02.334" level="INFO">Opening url 'https://aspireapp.odoo.com'</msg>
+<status status="PASS" starttime="20211107 17:47:02.334" endtime="20211107 17:47:02.921"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:46:53.024" endtime="20211107 17:47:02.922"></status>
+</kw>
+<test id="s1-s1-s1-s1-t1" name="Verify Create Manufacturing Successfully">
+<kw name="Login With Valid Credentials" type="setup">
+<kw name="Enter Username" library="LoginPage">
+<arguments>
+<arg>${VALID_USER}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${LOGIN_USERNAME_INPUT}</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:02.942" level="INFO">Typing text 'user@aspireapp.com' into text field 'xpath://*[@id="login"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:02.932" endtime="20211107 17:47:03.196"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:02.930" endtime="20211107 17:47:03.197"></status>
+</kw>
+<kw name="Enter Password" library="LoginPage">
+<arguments>
+<arg>${VALID_PASSWORD}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${LOGIN_PASSWORD_INPUT}</arg>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:03.198" level="INFO">Typing text '@sp1r3app' into text field 'xpath://*[@id="password"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:03.198" endtime="20211107 17:47:03.291"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:03.197" endtime="20211107 17:47:03.291"></status>
+</kw>
+<kw name="Click Log In Button" library="LoginPage">
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>${LOGIN_LOG_IN_BTN}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:03.292" level="INFO">Clicking button 'xpath://button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:03.292" endtime="20211107 17:47:05.100"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:03.291" endtime="20211107 17:47:05.100"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${USER_BTN}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:05.101" endtime="20211107 17:47:05.594"></status>
+</kw>
+<kw name="Verify Login successfully">
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<doc>Verifies that current page contains ``text``.</doc>
+<arguments>
+<arg>Discuss</arg>
+</arguments>
+<msg timestamp="20211107 17:47:05.629" level="INFO">Current page contains text 'Discuss'.</msg>
+<status status="PASS" starttime="20211107 17:47:05.595" endtime="20211107 17:47:05.629"></status>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<doc>Verifies that current page contains ``text``.</doc>
+<arguments>
+<arg>Inventory</arg>
+</arguments>
+<msg timestamp="20211107 17:47:05.646" level="INFO">Current page contains text 'Inventory'.</msg>
+<status status="PASS" starttime="20211107 17:47:05.629" endtime="20211107 17:47:05.646"></status>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<doc>Verifies that current page contains ``text``.</doc>
+<arguments>
+<arg>Manufacturing</arg>
+</arguments>
+<msg timestamp="20211107 17:47:05.672" level="INFO">Current page contains text 'Manufacturing'.</msg>
+<status status="PASS" starttime="20211107 17:47:05.647" endtime="20211107 17:47:05.672"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:05.595" endtime="20211107 17:47:05.672"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:02.929" endtime="20211107 17:47:05.672"></status>
+</kw>
+<kw name="Navigate to Inventory" library="HomePage">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${MENU_INVENTOTY}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:05.674" level="INFO">Clicking element 'xpath://a[@data-menu-xmlid="stock.menu_stock_root"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:05.673" endtime="20211107 17:47:05.755"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:05.673" endtime="20211107 17:47:05.756"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Products</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:05.756" endtime="20211107 17:47:06.242"></status>
+</kw>
+<kw name="Navigate to Product Menu" library="InventoryPage">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${MENU_INV_PRODUCTS}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:06.243" level="INFO">Clicking element 'xpath://a[@data-menu-xmlid="stock.menu_stock_inventory_control"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:06.242" endtime="20211107 17:47:06.292"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:06.242" endtime="20211107 17:47:06.292"></status>
+</kw>
+<kw name="Navigate to Sub Product Menu" library="InventoryPage">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${SUB_MENU_PRD_PRODUCTS}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:06.294" level="INFO">Clicking element 'xpath://a[@data-menu-xmlid="stock.menu_product_variant_config_stock"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:06.294" endtime="20211107 17:47:06.350"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:06.293" endtime="20211107 17:47:06.351"></status>
+</kw>
+<kw name="Create Product">
+<kw name="Word" library="FakerLibrary">
+<doc>:returns: A random word, eg: 'lorem'</doc>
+<assign>
+<var>${randomName}</var>
+</assign>
+<msg timestamp="20211107 17:47:06.352" level="INFO">${randomName} = themselves</msg>
+<status status="PASS" starttime="20211107 17:47:06.351" endtime="20211107 17:47:06.352"></status>
+</kw>
+<kw name="Random Number" library="FakerLibrary">
+<doc>Returns a random number with 1 digit (default, when digits==None),
+a random number with 0 to given number of digits, or a random number
+with given number to given number of digits (when ``fix_len==True``).</doc>
+<assign>
+<var>${randomRef}</var>
+</assign>
+<msg timestamp="20211107 17:47:06.353" level="INFO">${randomRef} = 5774577</msg>
+<status status="PASS" starttime="20211107 17:47:06.353" endtime="20211107 17:47:06.353"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${productName}</arg>
+<arg>${PROD_SUMMARY}[Product_Name] ${randomName}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:06.356" level="INFO">${productName} = Aspire themselves</msg>
+<status status="PASS" starttime="20211107 17:47:06.353" endtime="20211107 17:47:06.356"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${interalRef}</arg>
+<arg>${PROD_SUMMARY}[Internal_Reference] ${randomRef}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:06.358" level="INFO">${interalRef} = ref 5774577</msg>
+<status status="PASS" starttime="20211107 17:47:06.356" endtime="20211107 17:47:06.358"></status>
+</kw>
+<kw name="Click Create Button" library="InventoryPage">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${CREATE_BTN}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:06.359" endtime="20211107 17:47:07.073"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${CREATE_BTN}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:07.075" level="INFO">Clicking element 'xpath://button[@accesskey="c"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:07.074" endtime="20211107 17:47:07.135"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:06.358" endtime="20211107 17:47:07.135"></status>
+</kw>
+<kw name="Input Product Names" library="CreateProductPage">
+<arguments>
+<arg>${productName}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${NAME_INPUT}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:07.136" endtime="20211107 17:47:08.153"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${NAME_INPUT}</arg>
+<arg>${values}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:08.154" level="INFO">Typing text 'Aspire themselves' into text field 'xpath://input[@name="name"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:08.153" endtime="20211107 17:47:08.335"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:07.135" endtime="20211107 17:47:08.335"></status>
+</kw>
+<kw name="Select Value From Prod Type Dropdown" library="CreateProductPage">
+<doc>Selects a value from the dropdown list using the ``dropdownValue`` provided</doc>
+<arguments>
+<arg>Consumable</arg>
+</arguments>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${PROD_TYPE_SELECT}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:08.336" level="INFO">Clicking element 'xpath://*[@name="type"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:08.336" endtime="20211107 17:47:08.448"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>//select//*[text()[contains(., "${dropdownValue}")]]</arg>
+</arguments>
+<msg timestamp="20211107 17:47:08.448" level="INFO">Clicking element '//select//*[text()[contains(., "Consumable")]]'.</msg>
+<status status="PASS" starttime="20211107 17:47:08.448" endtime="20211107 17:47:08.765"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:08.335" endtime="20211107 17:47:08.766"></status>
+</kw>
+<kw name="Input Internal Reference" library="CreateProductPage">
+<arguments>
+<arg>${interalRef}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${INT_REF_INPUT}</arg>
+<arg>${values}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:08.768" level="INFO">Typing text 'ref 5774577' into text field 'xpath://*[@name="default_code"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:08.767" endtime="20211107 17:47:09.134"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:08.766" endtime="20211107 17:47:09.134"></status>
+</kw>
+<kw name="Input Barcode" library="CreateProductPage">
+<arguments>
+<arg>${PROD_SUMMARY}[Barcode]</arg>
+</arguments>
+<kw name="Random Int" library="FakerLibrary">
+<doc>Returns a random integer between two values.</doc>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20211107 17:47:09.135" level="INFO">${random} = 9635</msg>
+<status status="PASS" starttime="20211107 17:47:09.135" endtime="20211107 17:47:09.135"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${BARCODE_INPUT}</arg>
+<arg>${values}_${random}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:09.136" level="INFO">Typing text 'XCHALLENGE_9635' into text field 'xpath://*[@name="barcode"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:09.136" endtime="20211107 17:47:09.273"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.134" endtime="20211107 17:47:09.273"></status>
+</kw>
+<kw name="Input Sales Price" library="CreateProductPage">
+<arguments>
+<arg>${PROD_SUMMARY}[Sales_Price]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${SALES_PRICE_INPUT}</arg>
+<arg>${values}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:09.274" level="INFO">Typing text '122' into text field 'xpath://*[@name="list_price"]//input'.</msg>
+<status status="PASS" starttime="20211107 17:47:09.274" endtime="20211107 17:47:09.389"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.273" endtime="20211107 17:47:09.389"></status>
+</kw>
+<kw name="Input Cost" library="CreateProductPage">
+<arguments>
+<arg>${PROD_SUMMARY}[Cost]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${COST_INPUT}</arg>
+<arg>${values}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:09.390" level="INFO">Typing text '78' into text field 'xpath://*[@name="standard_price"]//input'.</msg>
+<status status="PASS" starttime="20211107 17:47:09.390" endtime="20211107 17:47:09.478"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.389" endtime="20211107 17:47:09.478"></status>
+</kw>
+<kw name="Input Internal Note" library="CreateProductPage">
+<arguments>
+<arg>${PROD_SUMMARY}[Internal_Note]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${NOTE_INPUT}</arg>
+<arg>${values}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:09.480" level="INFO">Typing text 'Note for test 12345' into text field 'xpath://table//textarea[@name="description"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:09.479" endtime="20211107 17:47:09.616"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.479" endtime="20211107 17:47:09.616"></status>
+</kw>
+<kw name="Click Save Button" library="CreateProductPage">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${SAVE_BTN}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:09.619" level="INFO">Clicking element 'xpath://button[@accesskey="s"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:09.618" endtime="20211107 17:47:09.722"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.617" endtime="20211107 17:47:09.722"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:06.351" endtime="20211107 17:47:09.723"></status>
+</kw>
+<kw name="Click Application Icon" library="HomePage">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${APPLICATION_ICON}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:09.724" level="INFO">Clicking element 'xpath://*[@title="Applications"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:09.723" endtime="20211107 17:47:09.766"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.723" endtime="20211107 17:47:09.767"></status>
+</kw>
+<kw name="Navigate to Manufacturing" library="HomePage">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${MENU_MANUFACTURING}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:09.767" endtime="20211107 17:47:10.328"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${MENU_MANUFACTURING}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:10.329" level="INFO">Clicking element 'xpath://a[@data-menu-xmlid="mrp.menu_mrp_root"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:10.328" endtime="20211107 17:47:10.383"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:09.767" endtime="20211107 17:47:10.383"></status>
+</kw>
+<kw name="Create Manufacturing">
+<kw name="Click Create Manufacturing Button" library="ManufacturingPage">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${CREATE_BTN}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:10.385" endtime="20211107 17:47:11.531"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${CREATE_BTN}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:11.531" level="INFO">Clicking element 'xpath://button[@accesskey="c"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:11.531" endtime="20211107 17:47:11.587"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:10.384" endtime="20211107 17:47:11.588"></status>
+</kw>
+<kw name="Select Prod Name" library="CreateManufacturingPage">
+<doc>Selects a value from the dropdown list using the ``dropdownValue`` provided</doc>
+<arguments>
+<arg>[${interalRef}] ${productName}</arg>
+</arguments>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on the current page.</doc>
+<arguments>
+<arg>Confirm</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:11.588" endtime="20211107 17:47:12.077"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${PROD_NAME_SELECT}//input</arg>
+<arg>${dropdownValue}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:12.078" level="INFO">Typing text '[ref 5774577] Aspire themselves' into text field 'xpath://*[@name="product_id"]//input'.</msg>
+<status status="PASS" starttime="20211107 17:47:12.078" endtime="20211107 17:47:12.240"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>//a[text()[contains(.,"${dropdownValue}")]]</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:12.240" endtime="20211107 17:47:12.666"></status>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<arguments>
+<arg>//a[text()[contains(.,"${dropdownValue}")]]</arg>
+<arg>ENTER</arg>
+</arguments>
+<msg timestamp="20211107 17:47:12.667" level="INFO">Sending key(s) ('ENTER',) to //a[text()[contains(.,"[ref 5774577] Aspire themselves")]] element.</msg>
+<msg timestamp="20211107 17:47:12.949" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20211107 17:47:12.950" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20211107 17:47:12.666" endtime="20211107 17:47:12.959"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:11.588" endtime="20211107 17:47:12.959"></status>
+</kw>
+<kw name="Input Quantity" library="CreateManufacturingPage">
+<arguments>
+<arg>${PROD_SUMMARY}[Qty]</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${PROD_QTY}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:12.961" level="INFO">Typing text '12' into text field 'xpath://*[@name="product_qty"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:12.961" endtime="20211107 17:47:13.067"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:12.960" endtime="20211107 17:47:13.067"></status>
+</kw>
+<kw name="Click Save Button" library="CreateManufacturingPage">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${SAVE_BTN}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:13.069" level="INFO">Clicking element 'xpath://button[@accesskey="s"]'.</msg>
+<status status="PASS" starttime="20211107 17:47:13.069" endtime="20211107 17:47:13.122"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:13.068" endtime="20211107 17:47:13.122"></status>
+</kw>
+<status status="PASS" starttime="20211107 17:47:10.383" endtime="20211107 17:47:13.122"></status>
+</kw>
+<kw name="Get Current Date for Order" library="CreateManufacturingPage">
+<assign>
+<var>${currentDate}</var>
+</assign>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<assign>
+<var>${currentDate}</var>
+</assign>
+<msg timestamp="20211107 17:47:13.126" level="INFO">${currentDate} = 2021-11-07 17:47:13.124</msg>
+<status status="PASS" starttime="20211107 17:47:13.123" endtime="20211107 17:47:13.126"></status>
+</kw>
+<kw name="Convert Date" library="DateTime">
+<doc>Converts between supported `date formats`.</doc>
+<arguments>
+<arg>${currentDate}</arg>
+<arg>datetime</arg>
+</arguments>
+<assign>
+<var>${setDate}</var>
+</assign>
+<msg timestamp="20211107 17:47:13.135" level="INFO">${setDate} = 2021-11-07 17:47:13.124000</msg>
+<status status="PASS" starttime="20211107 17:47:13.126" endtime="20211107 17:47:13.135"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${currentDayPicker}</arg>
+<arg>${setDate.month}/${setDate.day}/${setDate.year}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:13.138" level="INFO">${currentDayPicker} = 11/7/2021</msg>
+<status status="PASS" starttime="20211107 17:47:13.135" endtime="20211107 17:47:13.138"></status>
+</kw>
+<msg timestamp="20211107 17:47:13.138" level="INFO">${currentDate} = 11/7/2021</msg>
+<status status="PASS" starttime="20211107 17:47:13.123" endtime="20211107 17:47:13.138"></status>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>[${interalRef}] ${productName}</arg>
+<arg>${PROD_SUMMARY}[Qty]</arg>
+<arg>${currentDate}</arg>
+<arg>${EMPTY}</arg>
+<arg>${USER_NAME}</arg>
+</arguments>
+<assign>
+<var>${Order_Infor_Expected}</var>
+</assign>
+<msg timestamp="20211107 17:47:13.140" level="INFO">${Order_Infor_Expected} = ['[ref 5774577] Aspire themselves', '12', '11/7/2021', '', 'user']</msg>
+<status status="PASS" starttime="20211107 17:47:13.139" endtime="20211107 17:47:13.140"></status>
+</kw>
+<kw name="Get Manufacturing Values" library="ManufacturingDetailPage">
+<assign>
+<var>${Order_Infor_Actual}</var>
+</assign>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<assign>
+<var>@{Order_Infor}</var>
+</assign>
+<msg timestamp="20211107 17:47:13.142" level="INFO">@{Order_Infor} = [ ]</msg>
+<status status="PASS" starttime="20211107 17:47:13.141" endtime="20211107 17:47:13.143"></status>
+</kw>
+<kw name="Get Actual Field Values" library="Common">
+<arguments>
+<arg>${PROD_NAME}//span</arg>
+</arguments>
+<assign>
+<var>${Name}</var>
+</assign>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:13.145" endtime="20211107 17:47:14.012"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<assign>
+<var>${act_label}</var>
+</assign>
+<msg timestamp="20211107 17:47:14.044" level="INFO">${act_label} = [ref 5774577] Aspire themselves</msg>
+<status status="PASS" starttime="20211107 17:47:14.012" endtime="20211107 17:47:14.044"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.045" level="INFO">${Name} = [ref 5774577] Aspire themselves</msg>
+<status status="PASS" starttime="20211107 17:47:13.144" endtime="20211107 17:47:14.045"></status>
+</kw>
+<kw name="Get Actual Field Values" library="Common">
+<arguments>
+<arg>${PROD_QTY}</arg>
+</arguments>
+<assign>
+<var>${Qty}</var>
+</assign>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:14.046" endtime="20211107 17:47:14.063"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<assign>
+<var>${act_label}</var>
+</assign>
+<msg timestamp="20211107 17:47:14.109" level="INFO">${act_label} = 12.00</msg>
+<status status="PASS" starttime="20211107 17:47:14.063" endtime="20211107 17:47:14.110"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.110" level="INFO">${Qty} = 12.00</msg>
+<status status="PASS" starttime="20211107 17:47:14.045" endtime="20211107 17:47:14.110"></status>
+</kw>
+<kw name="Get Current Day Create Maufacturing Without Special Time" library="ManufacturingDetailPage">
+<assign>
+<var>${Schedule}</var>
+</assign>
+<kw name="Get Actual Field Values" library="Common">
+<arguments>
+<arg>${SCHEDULE}</arg>
+</arguments>
+<assign>
+<var>${act_labels}</var>
+</assign>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:14.112" endtime="20211107 17:47:14.124"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<assign>
+<var>${act_label}</var>
+</assign>
+<msg timestamp="20211107 17:47:14.143" level="INFO">${act_label} = 11/07/2021 17:47:11</msg>
+<status status="PASS" starttime="20211107 17:47:14.124" endtime="20211107 17:47:14.143"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.143" level="INFO">${act_labels} = 11/07/2021 17:47:11</msg>
+<status status="PASS" starttime="20211107 17:47:14.111" endtime="20211107 17:47:14.143"></status>
+</kw>
+<kw name="Split String" library="String">
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<arguments>
+<arg>${act_labels}</arg>
+<arg>${SPACE}</arg>
+</arguments>
+<assign>
+<var>@{act_label}</var>
+</assign>
+<msg timestamp="20211107 17:47:14.145" level="INFO">@{act_label} = [ 11/07/2021 | 17:47:11 ]</msg>
+<status status="PASS" starttime="20211107 17:47:14.144" endtime="20211107 17:47:14.145"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.145" level="INFO">${Schedule} = 11/07/2021</msg>
+<status status="PASS" starttime="20211107 17:47:14.110" endtime="20211107 17:47:14.145"></status>
+</kw>
+<kw name="Get Actual Field Values" library="Common">
+<arguments>
+<arg>${BOM}</arg>
+</arguments>
+<assign>
+<var>${BOM}</var>
+</assign>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:14.146" endtime="20211107 17:47:14.160"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<assign>
+<var>${act_label}</var>
+</assign>
+<msg timestamp="20211107 17:47:14.177" level="INFO">${act_label} = </msg>
+<status status="PASS" starttime="20211107 17:47:14.161" endtime="20211107 17:47:14.177"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.177" level="INFO">${BOM} = </msg>
+<status status="PASS" starttime="20211107 17:47:14.145" endtime="20211107 17:47:14.178"></status>
+</kw>
+<kw name="Get Actual Field Values" library="Common">
+<arguments>
+<arg>${USERID}</arg>
+</arguments>
+<assign>
+<var>${User}</var>
+</assign>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:14.178" endtime="20211107 17:47:14.193"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${locator}</arg>
+</arguments>
+<assign>
+<var>${act_label}</var>
+</assign>
+<msg timestamp="20211107 17:47:14.212" level="INFO">${act_label} = user</msg>
+<status status="PASS" starttime="20211107 17:47:14.193" endtime="20211107 17:47:14.212"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.213" level="INFO">${User} = user</msg>
+<status status="PASS" starttime="20211107 17:47:14.178" endtime="20211107 17:47:14.213"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${Order_Infor}</arg>
+<arg>${Name}</arg>
+<arg>${Qty}</arg>
+<arg>${Schedule}</arg>
+<arg>${BOM}</arg>
+<arg>${User}</arg>
+</arguments>
+<status status="PASS" starttime="20211107 17:47:14.213" endtime="20211107 17:47:14.214"></status>
+</kw>
+<msg timestamp="20211107 17:47:14.214" level="INFO">${Order_Infor_Actual} = ['[ref 5774577] Aspire themselves', '12.00', '11/07/2021', '', 'user']</msg>
+<status status="PASS" starttime="20211107 17:47:13.140" endtime="20211107 17:47:14.214"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${Order_Infor_Expected}</arg>
+<arg>${Order_Infor_Actual}</arg>
+</arguments>
+<msg timestamp="20211107 17:47:14.216" level="FAIL">['[ref 5774577] Aspire themselves', '12', '11/7/2021', '', 'user'] != ['[ref 5774577] Aspire themselves', '12.00', '11/07/2021', '', 'user']</msg>
+<status status="FAIL" starttime="20211107 17:47:14.214" endtime="20211107 17:47:14.217"></status>
+</kw>
+<tags>
+<tag>aspire_challenge</tag>
+</tags>
+<status status="FAIL" starttime="20211107 17:47:02.924" endtime="20211107 17:47:14.217" critical="yes">['[ref 5774577] Aspire themselves', '12', '11/7/2021', '', 'user'] != ['[ref 5774577] Aspire themselves', '12.00', '11/07/2021', '', 'user']</status>
+</test>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="teardown">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20211107 17:47:14.218" endtime="20211107 17:47:14.330"></status>
+</kw>
+<status status="FAIL" starttime="20211107 17:46:52.581" endtime="20211107 17:47:14.330"></status>
+</suite>
+<status status="FAIL" starttime="20211107 17:46:52.577" endtime="20211107 17:47:14.332"></status>
+</suite>
+<status status="FAIL" starttime="20211107 17:46:52.261" endtime="20211107 17:47:14.334"></status>
+</suite>
+<status status="FAIL" starttime="20211107 17:46:52.229" endtime="20211107 17:47:14.337"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">aspire_challenge</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Selenium Aspire">Selenium Aspire</stat>
+<stat pass="0" fail="1" id="s1-s1" name="Tests">Selenium Aspire.Tests</stat>
+<stat pass="0" fail="1" id="s1-s1-s1" name="Aspire Challenge">Selenium Aspire.Tests.Aspire Challenge</stat>
+<stat pass="0" fail="1" id="s1-s1-s1-s1" name="Create Manufacturing Orders">Selenium Aspire.Tests.Aspire Challenge.Create Manufacturing Orders</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20211107 17:46:52.999" level="ERROR">Error in file '/Users/anhpham/Learn/Aspire/aspire_challenge/selenium_aspire/Data/TestData.robot' on line 5: Resource file '/Users/anhpham/Learn/Aspire/aspire_challenge/selenium_aspire/Data/Login.robot' does not exist.</msg>
+</errors>
+</robot>
